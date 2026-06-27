@@ -1,0 +1,12 @@
+
+GET http://localhost:5273/user/123
+###
+GET http://localhost:5273/1/
+###
+POST   http://localhost:5273/AddQuote/
+Content-Type: application/json
+
+{
+    "Text":"Let's do our best!",
+    "Author": "Chai tae"
+}
