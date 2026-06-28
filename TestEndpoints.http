@@ -19,4 +19,12 @@ Content-Type: application/json
 }
 
 ###
+PUT http://localhost:5273/quotes/
+Content-Type: application/json
+
+{
+    "oldText":"Be yourself",
+    "newText":"Be somebodyelse!"
+}
+###
 DELETE http://localhost:5273/quotes/1
