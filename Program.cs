@@ -7,7 +7,11 @@ app.MapGet("/", () => "Hello World!");
 
 //that {userID} is referred to as a route parameter
 app.MapGet("/user/{userId}", (string userID) => $"user id given: {userID}");
-List<QuoteDto> quotes = new List<QuoteDto>();
+var quotes = new List<QuoteDto>
+{
+    new() { Id = 1, Text = "Be yourself", Author = "Oscar Wilde", CreatedAt = DateTime.UtcNow },
+    new() { Id = 2, Text = "Stay hungry", Author = "Steve Jobs", CreatedAt = DateTime.UtcNow }
+};
 //let's do a quote database for practice
 //start by making a record dto type reference? Oh right you want to make one for posting/deleting whatevs
 //okay let's just set u some crud endpoints for reference
@@ -39,11 +43,25 @@ app.MapPost("/AddQuote",(QuotePostDto quotePostDto) =>
    return Results.Created($"/quotes/{quotePostDto.Text}",quotePostDto); 
 });
 //Update
-// app.MapPut("/UpdateQuote",(QuoteUpdateDto quoteUpdateDto)=>
-// {
-    
-// }
+app.MapPut("/UpdateQuote",(QuoteUpdateDto quoteUpdateDto)=>
+{
+    var quoteIndex= quotes.FindIndex(q => q.Text == quoteUpdateDto.OldText);
+    if(quoteIndex== -1)
+    {
+        return Results.NoContent();
+    }
+    var updatedQuote = quotes[quoteIndex] with
+    {
+        Text = quoteUpdateDto.NewText
+    };
+    quotes[quoteIndex] = updatedQuote;
+    return Results.Accepted();
+});
 //delete
+app.MapDelete("/DeleteQuote/{index}", (int index) =>
+{ 
+    quotes.RemoveAt(index-1);
+});
 
 //we need to create record type for quote database
 app.Run();

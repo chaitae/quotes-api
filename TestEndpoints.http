@@ -1,12 +1,22 @@
 
-GET http://localhost:5273/user/123
-###
-GET http://localhost:5273/1/
+GET http://localhost:5273/quote/1
 ###
 POST   http://localhost:5273/AddQuote/
 Content-Type: application/json
 
 {
-    "Text":"Let's do our best!",
+    "Text":"Be yourself!",
     "Author": "Chai tae"
 }
+###
+PUT http://localhost:5273/UpdateQuote/
+Content-Type: application/json
+
+{
+    "oldText":"Be yourself",
+    "newText":"Be somebodyelse!",
+    "Author": "Chai tae"
+}
+
+###
+DELETE http://localhost:5273/DeleteQuote/1
