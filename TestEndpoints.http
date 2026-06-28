@@ -1,7 +1,7 @@
 
-GET http://localhost:5273/quote/1
+GET http://localhost:5273/quotes/1
 ###
-POST   http://localhost:5273/AddQuote/
+POST   http://localhost:5273/quotes/
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
     "Author": "Chai tae"
 }
 ###
-PUT http://localhost:5273/UpdateQuote/
+PUT http://localhost:5273/quotes/
 Content-Type: application/json
 
 {
@@ -19,4 +19,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5273/DeleteQuote/1
+DELETE http://localhost:5273/quotes/1
